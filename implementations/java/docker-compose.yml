@@ -28,9 +28,14 @@ services:
     ports:
       - "8084:8084"
   driver-did-uport:
-    image: uport/uni-resolver-driver-did-uport
+    build:
+      context: ../../../uport-did-driver/
+      dockerfile: ./Dockerfile-driver-did-uport
     ports:
       - "8083:8081"
+    extra_hosts:
+      - "uportHost:10.188.47.112"
+    command: "0x8a5e2a6343108babed07899510fb42297938d41f"
   driver-did-erc725:
     build:
       context: .
